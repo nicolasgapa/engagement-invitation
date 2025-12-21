@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engagement Invitation | Jessica & Nicolas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap');
+
+        body {
+            background-color: #2c241a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .invitation-card {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fdf5e6; /* Original Cream/Parchment */
+            border: 20px solid transparent;
+            border-image: url('https://www.transparenttextures.com/patterns/gold-glitter.png') 30 round;
+            outline: 5px double #c5a059;
+            outline-offset: -15px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            color: #3d3225;
+            box-sizing: border-box;
+        }
+
+        /* Decorative Ornament */
+        .invitation-card::before {
+            content: "❧";
+            font-size: 40px;
+            color: #c5a059;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            font-size: 14px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 52px;
+            color: #8c6d31;
+            margin: 10px 0;
+            font-weight: normal;
+        }
+
+        .and {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        /* Photo Section */
+        .photo-wrapper {
+            margin: 30px auto;
+            max-width: 90%;
+            border: 1px solid #c5a059;
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .couple-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Subtle vintage filter for light background */
+            filter: sepia(20%) contrast(1.05) brightness(1.02);
+        }
+
+        .details {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            margin-top: 20px;
+            border-top: 1px solid #c5a059;
+            border-bottom: 1px solid #c5a059;
+            padding: 20px 0;
+            line-height: 1.8;
+        }
+
+        .address {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .invite-text {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: #8c6d31;
+            text-transform: uppercase;
+        }
+
+        .rsvp-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 30px;
+            background-color: #3d3225;
+            color: #fdf5e6;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: opacity 0.3s;
+        }
+
+        .rsvp-link:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 42px; }
+            .invitation-card { padding: 50px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-card">
+        <h3>The Honor of Your Presence is Requested</h3>
+        <p style="font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin-bottom: 20px;">To Celebrate the Engagement of</p>
+        
+        <h1>Jessica Gutstein</h1>
+        <div class="and">and</div>
+        <h1>Nicolas Gachancipa</h1>
+
+        <div class="photo-wrapper">
+            <img src="WhatsApp Image 2025-12-21 at 3.56.18 PM.jpeg" alt="Jessica and Nicolas" class="couple-photo">
+        </div>
+
+        <div class="details">
+            SATURDAY, MAY 30, 2026<br>
+            AT SEVEN O'CLOCK IN THE EVENING
+        </div>
+
+        <div class="address">
+            13384 LAKESIDE TERRACE<br>
+            COOPER CITY, FLORIDA
+        </div>
+
+        <div class="footer">
+            <div class="invite-text">
+                A Soirée of Splendor and High Rejoicing<br>
+                to commence the journey of a lifetime
+            </div>
+            
+            <a href="https://example.com/rsvp" class="rsvp-link">Access the RSVP Portal</a>
+            <span style="font-size: 10px; margin-top: 15px; display: block; opacity: 0.7;">R.S.V.P. BY MAY 1ST</span>
+        </div>
+    </div>
+
+</body>
+</html>
