@@ -331,6 +331,11 @@
             document.getElementById('rsvp-btn').innerText = data.rsvpBtn;
             document.getElementById('rsvp-deadline').innerText = data.deadline;
 
+            // Update RSVP Link with language parameter
+            const rsvpBtn = document.getElementById('rsvp-btn');
+            const baseUrl = "https://jessandnico.github.io/glen2027/";
+            rsvpBtn.href = baseUrl + "?lang=" + lang;
+
             // Transition
             const picker = document.getElementById('language-picker');
             const invite = document.getElementById('invitation-view');
