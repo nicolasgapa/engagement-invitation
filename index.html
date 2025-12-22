@@ -281,16 +281,14 @@
                     to commence the journey of a lifetime
                 </div>
                 
-                <a href="https://jessandnico.github.io/glen2027/" class="rsvp-link" id="rsvp-btn">Access the RSVP Portal</a>
+                <!-- Link initially set to # and will be updated via JavaScript -->
+                <a href="#" class="rsvp-link" id="rsvp-btn">Access the RSVP Portal</a>
                 <span class="deadline" id="rsvp-deadline">R.S.V.P. BY MAY 1ST</span>
             </div>
         </div>
     </div>
 
     <script>
-        // Store selected language
-        let currentLang = 'en';
-
         const translations = {
             en: {
                 header: "The Honor of Your Presence is Requested",
@@ -321,28 +319,24 @@
             }
         };
 
-        function updateRSVPLink(lang) {
-            const rsvpBtn = document.getElementById('rsvp-btn');
-            const baseUrl = "https://jessandnico.github.io/glen2027/";
-            // Force update the href attribute
-            rsvpBtn.setAttribute('href', baseUrl + "?lang=" + lang);
-        }
-
         function openInvite(lang, skipAnimation = false) {
-            currentLang = lang;
             const data = translations[lang] || translations['en'];
             
-            // 1. Update UI Content
+            // 1. Update UI Content Text
             document.getElementById('header-text').innerText = data.header;
             document.getElementById('sub-header').innerText = data.subHeader;
             document.getElementById('and-text').innerText = data.and;
             document.getElementById('date-details').innerHTML = data.date;
             document.getElementById('footer-invite').innerHTML = data.footer;
-            document.getElementById('rsvp-btn').innerText = data.rsvpBtn;
             document.getElementById('rsvp-deadline').innerText = data.deadline;
 
-            // 2. Explicitly update the RSVP Link
-            updateRSVPLink(lang);
+            // 2. Update the RSVP Link Element (Text and URL)
+            const rsvpBtn = document.getElementById('rsvp-btn');
+            const baseUrl = "https://jessandnico.github.io/glen2027/";
+            
+            rsvpBtn.innerText = data.rsvpBtn;
+            // Force the href update using the language parameter
+            rsvpBtn.href = baseUrl + "?lang=" + lang;
 
             // 3. Handle Transitions
             const picker = document.getElementById('language-picker');
@@ -381,7 +375,7 @@
             }, 600);
         }
 
-        // AUTO-DETECT LANGUAGE ON PAGE LOAD
+        // Auto-detect language parameter if the guest is revisiting the page with one
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const langParam = params.get('lang');
