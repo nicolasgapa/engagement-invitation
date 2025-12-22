@@ -121,13 +121,14 @@
             background-color: var(--brown);
             color: var(--cream);
             border: 1px solid var(--brown);
-            padding: 15px;
+            padding: 18px;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-size: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Cinzel', serif;
+            border-radius: 4px;
         }
 
         .lang-btn:hover {
@@ -149,7 +150,8 @@
             width: 100%;
             height: auto;
             display: block;
-            filter: sepia(15%) contrast(1.02);
+            filter: sepia(10%) contrast(1.02);
+            object-fit: cover;
         }
 
         /* Details Section */
@@ -187,15 +189,16 @@
         .rsvp-link {
             display: inline-block;
             margin-top: 5px;
-            padding: 10px 25px;
+            padding: 15px 30px;
             background-color: var(--brown);
             color: var(--cream);
             text-decoration: none;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.3s ease;
             border: 1px solid var(--brown);
+            border-radius: 4px;
         }
 
         .rsvp-link:hover {
@@ -205,7 +208,7 @@
 
         .deadline {
             font-size: 9px;
-            margin-top: 10px;
+            margin-top: 15px;
             display: block;
             opacity: 0.6;
             letter-spacing: 2px;
@@ -216,12 +219,13 @@
             position: absolute;
             top: 10px;
             right: 20px;
-            font-size: 20px;
+            font-size: 24px;
             background: none;
             border: none;
             color: var(--gold);
             cursor: pointer;
             opacity: 0.5;
+            padding: 10px;
         }
         
         .back-btn:hover { opacity: 1; }
@@ -230,6 +234,7 @@
             h1 { font-size: 38px; }
             .invitation-card { padding: 40px 15px; }
             .details { font-size: 12px; }
+            .lang-btn, .rsvp-link { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -262,7 +267,8 @@
             <h1>Nicolas Gachancipa</h1>
 
             <div class="photo-wrapper">
-                <img src="engagement1.jpeg" alt="Jessica and Nicolas" class="couple-photo" onerror="this.src='https://via.placeholder.com/500x600?text=Jessica+%26+Nicolas'">
+                <!-- Primary Image: engagement1.jpeg -->
+                <img src="engagement1.jpeg" alt="Jessica and Nicolas" class="couple-photo" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800'">
             </div>
 
             <div class="details" id="date-details">
@@ -281,8 +287,8 @@
                     to commence the journey of a lifetime
                 </div>
                 
-                <!-- Link initially set to # and will be updated via JavaScript -->
-                <a href="#" class="rsvp-link" id="rsvp-btn">Access the RSVP Portal</a>
+                <!-- RSVP Link to The Knot -->
+                <a href="https://www.theknot.com/us/jessica-gutstein-and-nicolas-gachancipa-apr-2027/rsvp" class="rsvp-link" id="rsvp-btn" target="_blank">Access the RSVP Portal</a>
                 <span class="deadline" id="rsvp-deadline">R.S.V.P. BY MAY 1ST</span>
             </div>
         </div>
@@ -322,7 +328,7 @@
         function openInvite(lang, skipAnimation = false) {
             const data = translations[lang] || translations['en'];
             
-            // 1. Update UI Content Text
+            // Update UI Content Text
             document.getElementById('header-text').innerText = data.header;
             document.getElementById('sub-header').innerText = data.subHeader;
             document.getElementById('and-text').innerText = data.and;
@@ -330,15 +336,11 @@
             document.getElementById('footer-invite').innerHTML = data.footer;
             document.getElementById('rsvp-deadline').innerText = data.deadline;
 
-            // 2. Update the RSVP Link Element (Text and URL)
+            // Update RSVP Button Text
             const rsvpBtn = document.getElementById('rsvp-btn');
-            const baseUrl = "https://jessandnico.github.io/glen2027/";
-            
             rsvpBtn.innerText = data.rsvpBtn;
-            // Force the href update using the language parameter
-            rsvpBtn.href = baseUrl + "?lang=" + lang;
 
-            // 3. Handle Transitions
+            // Handle Transitions
             const picker = document.getElementById('language-picker');
             const invite = document.getElementById('invitation-view');
 
@@ -375,7 +377,7 @@
             }, 600);
         }
 
-        // Auto-detect language parameter if the guest is revisiting the page with one
+        // Auto-detect language parameter if provided in URL
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const langParam = params.get('lang');
