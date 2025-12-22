@@ -262,7 +262,6 @@
             <h1>Nicolas Gachancipa</h1>
 
             <div class="photo-wrapper">
-                <!-- Ensure engagement1.jpeg is in the same folder -->
                 <img src="engagement1.jpeg" alt="Jessica and Nicolas" class="couple-photo" onerror="this.src='https://via.placeholder.com/500x600?text=Jessica+%26+Nicolas'">
             </div>
 
@@ -289,8 +288,8 @@
     </div>
 
     <script>
-        // Store selected language globally to ensure it's saved
-        let selectedLang = 'en';
+        // Store selected language
+        let currentLang = 'en';
 
         const translations = {
             en: {
@@ -322,12 +321,18 @@
             }
         };
 
-        function openInvite(lang) {
-            // 1. Save the language choice
-            selectedLang = lang;
-            const data = translations[lang];
+        function updateRSVPLink(lang) {
+            const rsvpBtn = document.getElementById('rsvp-btn');
+            const baseUrl = "https://jessandnico.github.io/glen2027/";
+            // Force update the href attribute
+            rsvpBtn.setAttribute('href', baseUrl + "?lang=" + lang);
+        }
+
+        function openInvite(lang, skipAnimation = false) {
+            currentLang = lang;
+            const data = translations[lang] || translations['en'];
             
-            // 2. Update Content Text
+            // 1. Update UI Content
             document.getElementById('header-text').innerText = data.header;
             document.getElementById('sub-header').innerText = data.subHeader;
             document.getElementById('and-text').innerText = data.and;
@@ -336,26 +341,29 @@
             document.getElementById('rsvp-btn').innerText = data.rsvpBtn;
             document.getElementById('rsvp-deadline').innerText = data.deadline;
 
-            // 3. Update the RSVP Link immediately with the saved language
-            const rsvpBtn = document.getElementById('rsvp-btn');
-            const baseUrl = "https://jessandnico.github.io/glen2027/";
-            
-            // Constructing URL to ensure no double slashes and correct param addition
-            rsvpBtn.href = `${baseUrl}?lang=${selectedLang}`;
+            // 2. Explicitly update the RSVP Link
+            updateRSVPLink(lang);
 
-            // 4. Transition Animation
+            // 3. Handle Transitions
             const picker = document.getElementById('language-picker');
             const invite = document.getElementById('invitation-view');
 
-            picker.style.opacity = '0';
-            setTimeout(() => {
+            if (skipAnimation) {
                 picker.style.display = 'none';
                 invite.style.display = 'block';
+                invite.style.opacity = '1';
+                invite.style.transform = 'translateY(0)';
+            } else {
+                picker.style.opacity = '0';
                 setTimeout(() => {
-                    invite.style.opacity = '1';
-                    invite.style.transform = 'translateY(0)';
-                }, 50);
-            }, 600);
+                    picker.style.display = 'none';
+                    invite.style.display = 'block';
+                    setTimeout(() => {
+                        invite.style.opacity = '1';
+                        invite.style.transform = 'translateY(0)';
+                    }, 50);
+                }, 600);
+            }
         }
 
         function goBack() {
@@ -372,6 +380,15 @@
                 }, 50);
             }, 600);
         }
+
+        // AUTO-DETECT LANGUAGE ON PAGE LOAD
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const langParam = params.get('lang');
+            if (langParam && translations[langParam]) {
+                openInvite(langParam, true);
+            }
+        };
     </script>
 </body>
 </html>
